@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#0d47a1">
+  <meta name="description" content="Website resmi Dewan Kerja Cabang Gerakan Pramuka Bantul masa bakti 2026–2031.">
+  <title>DKC Bantul 2026–2031 | Teguh Hati, Bakti Diri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="topline"></div>
+  <header class="site-header">
+    <div class="container nav-wrap">
+      <a class="brand" href="#beranda" aria-label="Beranda DKC Bantul">
+        <img src="assets/logo-dkc-bantul.png" alt="Logo Dewan Kerja Cabang Bantul" class="brand-logo">
+        <div>
+          <div class="brand-title">DKC BANTUL</div>
+          <div class="brand-subtitle">Gerakan Pramuka • Masa Bakti 2026–2031</div>
+        </div>
+      </a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Buka menu">☰</button>
+      <nav id="mainNav" class="main-nav">
+        <a href="#profil">Profil</a>
+        <a href="#struktur">Struktur</a>
+        <a href="#program">Program Kerja</a>
+        <a href="#informasi">Informasi</a>
+        <a href="#kegiatan">Kegiatan</a>
+        <a href="#saran">Usul & Saran</a>
+        <button class="nav-admin" id="adminOpen">Kelola</button>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section id="beranda" class="hero">
+      <div class="hero-glow"></div>
+      <div class="container hero-grid">
+        <div class="hero-copy">
+          <span class="eyebrow">WEBSITE RESMI</span>
+          <h1>Teguh Hati,<br><span>Bakti Diri,</span><br>Ikhlas Mengabdi<br>Ibu Pertiwi.</h1>
+          <p>Ruang informasi, komunikasi, dan dokumentasi resmi Dewan Kerja Cabang Gerakan Pramuka Bantul masa bakti 2026–2031.</p>
+          <div class="hero-actions">
+            <a class="btn btn-primary" href="#profil">Kenali DKC Bantul</a>
+            <a class="btn btn-ghost" href="#informasi">Lihat informasi terkini</a>
+          </div>
+          <div class="hero-meta"><span>●</span> Aktif • Terbuka • Kolaboratif</div>
+        </div>
+        <div class="hero-mark">
+          <div class="mark-ring"><img src="assets/logo-dkc-bantul.png" alt="Logo DKC Bantul"></div>
+          <div class="mark-caption">DEWAN KERJA CABANG<br><strong>BANTUL</strong><br><span>YOGYAKARTA</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section id="profil" class="section section-light">
+      <div class="container">
+        <div class="section-heading"><span class="eyebrow">01 • PROFIL</span><h2>Tentang Dewan Kerja</h2><p>Organisasi penggerak aktivitas Pramuka Penegak dan Pandega di tingkat cabang.</p></div>
+        <div class="profile-grid">
+          <article class="card story-card">
+            <div class="card-icon">✦</div>
+            <h3>Direksi singkat tentang Dewan Kerja Pramuka</h3>
+            <p>Dewan Kerja Pramuka merupakan wadah pembinaan dan pengembangan kegiatan bagi Pramuka Penegak dan Pandega. DKC Bantul menjadi mitra Kwartir Cabang dalam merancang, melaksanakan, mengembangkan, mengkaji, serta mengevaluasi kegiatan yang relevan dengan kebutuhan generasi muda.</p>
+            <p>Website ini menjadi pusat informasi resmi untuk program kerja, agenda, dokumen kegiatan, publikasi, dan ruang penyampaian usul serta saran.</p>
+          </article>
+          <div class="vision-stack">
+            <article class="vision-card vision"><span>VISI</span><h3>Terwujudnya DKC Bantul yang aktif, adaptif, kolaboratif, dan berdampak bagi Pramuka Penegak dan Pandega.</h3></article>
+            <article class="vision-card mission"><span>MISI</span><ol><li>Menguatkan tata kelola dan profesionalitas Dewan Kerja.</li><li>Mengembangkan kegiatan yang kreatif, edukatif, dan relevan.</li><li>Mendorong kaderisasi, kapasitas, dan kepemimpinan kaum muda.</li><li>Membangun jejaring kolaborasi dengan kwartir dan mitra.</li><li>Meningkatkan kajian, penelitian, dokumentasi, dan evaluasi kegiatan.</li></ol></article>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="struktur" class="section section-blue">
+      <div class="container">
+        <div class="section-heading inverse"><span class="eyebrow">02 • STRUKTUR ORGANISASI</span><h2>Pengurus DKC Bantul 2026–2031</h2><p>Urutan jabatan dari yang tertinggi ke rendah. Foto dan biodata dapat diperbarui melalui menu Kelola.</p></div>
+        <div id="structureGrid" class="structure-grid"></div>
+      </div>
+    </section>
+
+    <section id="program" class="section section-light">
+      <div class="container">
+        <div class="section-heading"><span class="eyebrow">03 • PROGRAM KERJA</span><h2>Program Kerja</h2><p>Dokumen program kerja dapat dibaca seperti buku langsung dari halaman web.</p></div>
+        <div class="program-layout">
+          <div id="programList" class="program-list"></div>
+          <aside class="book-panel"><div class="book-cover"><div class="book-spine"></div><span>PROGRAM KERJA</span><strong>DKC BANTUL</strong><small>2026–2031</small></div><div class="book-note">Pilih dokumen untuk membukanya pada pembaca PDF.</div></aside>
+        </div>
+      </div>
+    </section>
+
+    <section id="informasi" class="section section-soft">
+      <div class="container">
+        <div class="section-heading"><span class="eyebrow">04 • INFORMASI TERKINI</span><h2>Informasi & Dokumen</h2><p>Agenda, pendaftaran, surat edaran, serta juklak/juknis kegiatan.</p></div>
+        <div id="infoList" class="info-list"></div>
+      </div>
+    </section>
+
+    <section id="kegiatan" class="section section-light">
+      <div class="container">
+        <div class="section-heading"><span class="eyebrow">05 • KEGIATAN TERKINI</span><h2>Jejak Kegiatan</h2><p>Dokumentasi dan informasi kegiatan DKC Bantul.</p></div>
+        <div id="activityList" class="activity-grid"></div>
+      </div>
+    </section>
+
+    <section id="saran" class="section suggestion-section">
+      <div class="container">
+        <div class="section-heading inverse"><span class="eyebrow">06 • USUL & SARAN</span><h2>Suara dari Pangkalan & Ranting</h2><p>Sampaikan masukan untuk membantu DKC Bantul bertumbuh lebih baik.</p></div>
+        <div class="suggestion-grid">
+          <form id="suggestionForm" class="suggestion-form">
+            <label>Nama<input name="nama" required placeholder="Nama lengkap"></label>
+            <label>Pangkalan / Ranting<input name="pangkalan" required placeholder="Contoh: Ambalan / Ranting ..."></label>
+            <label>Usul / Saran<textarea name="saran" required rows="6" placeholder="Tuliskan usul atau saran Anda..."></textarea></label>
+            <button class="btn btn-light" type="submit">Kirim Usul & Saran</button>
+            <div id="suggestionStatus" class="form-status"></div>
+          </form>
+          <div class="suggestion-admin-card">
+            <div class="small-label">REKAP MASUKAN</div>
+            <div class="big-number" id="suggestionCount">0</div>
+            <p>Data tersimpan di perangkat browser untuk demo. Pada versi produksi, sambungkan ke database/admin server.</p>
+            <div class="export-row"><button class="btn btn-outline-light" id="exportExcel">Download Excel</button><button class="btn btn-outline-light" id="exportPDF">Download PDF</button></div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer"><div class="container footer-grid"><div><strong>DKC BANTUL</strong><p>Gerakan Pramuka • Masa Bakti 2026–2031</p></div><div class="footer-motto">“Teguh Hati • Bakti Diri • Ikhlas Mengabdi Ibu Pertiwi”</div><div class="footer-copy">© 2026 DKC Bantul</div></div></footer>
+
+  <dialog id="pdfDialog" class="pdf-dialog"><div class="pdf-head"><strong id="pdfTitle">Dokumen</strong><button id="pdfClose">×</button></div><iframe id="pdfFrame" title="Pembaca PDF"></iframe></dialog>
+
+  <dialog id="adminDialog" class="admin-dialog"><div class="admin-head"><div><strong>Kelola Konten</strong><small>Mode demo • perubahan tersimpan di browser</small></div><button id="adminClose">×</button></div><div class="admin-body">
+    <div class="admin-tabs"><button class="active" data-tab="structureAdmin">Struktur</button><button data-tab="programAdmin">Program</button><button data-tab="infoAdmin">Informasi</button><button data-tab="activityAdmin">Kegiatan</button></div>
+    <div id="structureAdmin" class="admin-tab active"><h3>Pengurus</h3><p>Gunakan formulir di bawah untuk menambahkan pengurus. Foto tanpa background dapat diunggah.</p><form id="memberForm" class="admin-form"><input name="name" placeholder="Nama lengkap" required><select name="position" required><option value="">Pilih jabatan</option></select><input name="bio" placeholder="Biodata singkat"><input type="file" name="photo" accept="image/*"><button class="btn btn-primary">Tambah pengurus</button></form><div id="memberAdminList"></div></div>
+    <div id="programAdmin" class="admin-tab"><h3>Program kerja</h3><form id="programForm" class="admin-form"><input name="title" placeholder="Nama program" required><input name="description" placeholder="Uraian program kerja" required><input name="estimate" placeholder="Estimasi pelaksanaan, contoh: Jan–Mar 2027"><input type="file" name="pdf" accept="application/pdf"><button class="btn btn-primary">Tambah program</button></form><div id="programAdminList"></div></div>
+    <div id="infoAdmin" class="admin-tab"><h3>Informasi terkini</h3><form id="infoForm" class="admin-form"><input name="title" placeholder="Nama kegiatan / informasi" required><div class="two"><input name="date" type="date"><input name="time" type="time"></div><input name="venue" placeholder="Tempat kegiatan"><input name="location" placeholder="Lokasi kegiatan / tautan Maps"><input name="registration" placeholder="Link pendaftaran"><input name="notes" placeholder="Keterangan singkat"><div class="two"><label class="file-label">Lampiran acara PDF<input type="file" name="attachment" accept="application/pdf"></label><label class="file-label">Surat edaran PDF<input type="file" name="circular" accept="application/pdf"></label></div><label class="file-label">Juklak/Juknis PDF<input type="file" name="guide" accept="application/pdf"></label><button class="btn btn-primary">Tambah informasi</button></form><div id="infoAdminList"></div></div>
+    <div id="activityAdmin" class="admin-tab"><h3>Kegiatan terkini</h3><form id="activityForm" class="admin-form"><input name="title" placeholder="Nama kegiatan" required><div class="two"><input name="date" type="date"><input name="time" type="time"></div><input name="venue" placeholder="Tempat kegiatan"><input name="location" placeholder="Lokasi kegiatan / tautan Maps"><input name="registration" placeholder="Link pendaftaran"><input name="notes" placeholder="Keterangan singkat"><div class="two"><label class="file-label">Lampiran acara PDF<input type="file" name="attachment" accept="application/pdf"></label><label class="file-label">Surat edaran PDF<input type="file" name="circular" accept="application/pdf"></label></div><label class="file-label">Juklak/Juknis PDF<input type="file" name="guide" accept="application/pdf"></label><button class="btn btn-primary">Tambah kegiatan</button></form><div id="activityAdminList"></div></div>
+  </div></dialog>
+  <script src="app.js"></script>
+</body>
+</html>
