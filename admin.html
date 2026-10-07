@@ -557,23 +557,198 @@ logoutBtn.addEventListener(
   }
 );
 
+function showPasswordReset(){
 
-supabaseClient.auth.onAuthStateChange(
-  function(event, session){
+    const oldBox = document.getElementById("passwordResetBox");
 
-    if(session){
-
-      showDashboard();
-
-    }else{
-
-      showLogin();
-
+    if(oldBox){
+        oldBox.style.display = "flex";
+        return;
     }
 
-  }
-);
+    const box = document.createElement("div");
 
+    box.id = "passwordResetBox";
+
+    box.style.cssText = `
+        position:fixed;
+        inset:0;
+        z-index:99999;
+        display:flex;
+        align-items:center;
+        justify-content:center;
+        padding:25px;
+        background:linear-gradient(135deg,#061d3d,#0b315f);
+        font-family:Arial,sans-serif;
+    `;
+
+    box.innerHTML = `
+        <div style="
+            width:100%;
+            max-width:420px;
+            background:white;
+            padding:30px;
+            border-radius:20px;
+            box-shadow:0 20px 50px rgba(0,0,0,.3);
+        ">
+
+            <h2 style="margin-top:0;color:#061d3d;">
+                Buat Password Baru
+            </h2>
+
+            <p style="color:#666;">
+                Masukkan password baru untuk Admin DKC 1202.
+            </p>
+
+            <input
+                id="newPassword"
+                type="password"
+                placeholder="Password baru"
+                style="
+                    width:100%;
+                    box-sizing:border-box;
+                    padding:14px;
+                    margin:10px 0;
+                    border:1px solid #ddd;
+                    border-radius:10px;
+                "
+            >
+
+            <input
+                id="confirmPassword"
+                type="password"
+                placeholder="Ulangi password baru"
+                style="
+                    width:100%;
+                    box-sizing:border-box;
+                    padding:14px;
+                    margin:10px 0;
+                    border:1px solid #ddd;
+                    border-radius:10px;
+                "
+            >
+
+            <div
+                id="resetMessage"
+                style="
+                    display:none;
+                    margin:10px 0;
+                    padding:10px;
+                    border-radius:8px;
+                    background:#fee2e2;
+                    color:#991b1b;
+                "
+            ></div>
+
+            <button
+                id="saveNewPassword"
+                style="
+                    width:100%;
+                    padding:14px;
+                    margin-top:10px;
+                    border:0;
+                    border-radius:10px;
+                    background:#061d3d;
+                    color:white;
+                    font-size:16px;
+                    font-weight:bold;
+                "
+            >
+                SIMPAN PASSWORD
+            </button>
+
+        </div>
+    `;
+
+    document.body.appendChild(box);
+
+    document
+        .getElementById("saveNewPassword")
+        .addEventListener("click", async function(){
+
+            const newPassword =
+                document.getElementById("newPassword").value;
+
+            const confirmPassword =
+                document.getElementById("confirmPassword").value;
+
+            const message =
+                document.getElementById("resetMessage");
+
+            message.style.display = "none";
+
+            if(newPassword.length < 6){
+
+                message.textContent =
+                    "Password minimal 6 karakter.";
+
+                message.style.display = "block";
+
+                return;
+            }
+
+            if(newPassword !== confirmPassword){
+
+                message.textContent =
+                    "Konfirmasi password tidak sama.";
+
+                message.style.display = "block";
+
+                return;
+            }
+
+            this.disabled = true;
+            this.textContent = "MENYIMPAN...";
+
+            const { error } =
+                await supabaseClient.auth.updateUser({
+                    password: newPassword
+                });
+
+            if(error){
+
+                message.textContent =
+                    "Gagal mengubah password: " + error.message;
+
+                message.style.display = "block";
+
+                this.disabled = false;
+                this.textContent = "SIMPAN PASSWORD";
+
+                return;
+            }
+
+            alert("Password berhasil diubah. Silakan login kembali.");
+
+            await supabaseClient.auth.signOut();
+
+            window.location.href = "admin.html";
+
+        });
+}
+supabaseClient.auth.onAuthStateChange(
+    function(event, session){
+
+        if(event === "PASSWORD_RECOVERY"){
+
+            showPasswordReset();
+
+            return;
+
+        }
+
+        if(session){
+
+            showDashboard();
+
+        }else{
+
+            showLogin();
+
+        }
+
+    }
+);
 
 checkSession();
 
