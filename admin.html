@@ -1,1 +1,585 @@
-<!doctype html><html lang="id"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Panel Pengelola | DKC Bantul</title><link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet"><link rel="stylesheet" href="styles.css"></head><body><header class="site-header"><div class="container nav"><a class="brand" href="index.html"><img src="logo-dkc-bantul.png" alt="Logo DKC Bantul"><span><b>DKC BANTUL</b><small>Panel Pengelola</small></span></a><button class="menu">☰</button><nav class="navlinks"><a href="index.html">Kembali ke Website</a></nav></div></header><section class="page-hero"><div class="container"><span class="eyebrow" style="color:#cfe3ff">PANEL PENGELOLA</span><h1>Dashboard DKC Bantul</h1><p>Rancangan tampilan panel admin. Tahap berikutnya akan menghubungkan halaman ini dengan Supabase Authentication, Database, dan Storage.</p></div></section><section class="section soft"><div class="container"><div class="notice">Catatan: halaman ini masih berupa desain frontend. Belum ada autentikasi atau database produksi. Jangan memasukkan data rahasia di sini.</div><div class="grid2" style="margin-top:18px"><div class="admin-box"><span class="pill">MODUL</span><h3>Kelola Konten</h3><p>Struktur organisasi, program kerja, informasi terkini, kegiatan, foto pengurus, dan dokumen PDF akan dikelola dari sini.</p><div class="actions"><a class="btn btn-red" href="struktur.html">Lihat Struktur</a><a class="btn" style="background:#edf4ff;color:#0b4da2" href="program.html">Program Kerja</a></div></div><div class="admin-box"><span class="pill">DATABASE</span><h3>Supabase siap dihubungkan</h3><p>Proyek Supabase yang sudah dibuat akan menjadi fondasi login admin/editor, penyimpanan dokumen, serta data website bersama.</p><a class="btn btn-red" href="saran.html">Lihat Usul & Saran</a></div></div></div></section><footer class="footer"><div class="container footer-grid"><div><b>DKC BANTUL</b><small>Gerakan Pramuka • Masa Bakti 2026–2031</small></div><div class="footer-motto">Teguh Hati • Bakti Diri • Ikhlas Mengabdi Ibu Pertiwi</div><div class="footer-copy">© 2026 DKC Bantul</div></div></footer><script src="app.js"></script></body></html>
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+
+<title>Panel Pengelola | DKC Bantul</title>
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Inter:wght@400;500;600;700;800;900&family=Playfair+Display:wght@700;800&display=swap" rel="stylesheet">
+
+<link rel="stylesheet" href="styles.css">
+
+<style>
+.login-screen{
+  min-height:100vh;
+  background:linear-gradient(135deg,#061d3d,#0b4da2);
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:25px;
+}
+
+.login-box{
+  width:100%;
+  max-width:420px;
+  background:white;
+  border-radius:24px;
+  padding:35px 28px;
+  box-shadow:0 25px 70px rgba(0,0,0,.25);
+}
+
+.login-logo{
+  text-align:center;
+  margin-bottom:25px;
+}
+
+.login-logo img{
+  width:90px;
+  height:90px;
+  object-fit:contain;
+}
+
+.login-logo h1{
+  margin:12px 0 4px;
+  font-family:'Playfair Display',serif;
+  color:#10233f;
+}
+
+.login-logo p{
+  margin:0;
+  color:#68758a;
+}
+
+.login-box label{
+  display:block;
+  margin:18px 0 7px;
+  font-weight:700;
+  color:#172b4d;
+}
+
+.login-box input{
+  width:100%;
+  box-sizing:border-box;
+  padding:14px 15px;
+  border:1px solid #d7dfeb;
+  border-radius:12px;
+  font-size:16px;
+  outline:none;
+}
+
+.login-box input:focus{
+  border-color:#0b4da2;
+  box-shadow:0 0 0 3px rgba(11,77,162,.1);
+}
+
+.login-btn{
+  width:100%;
+  border:0;
+  margin-top:24px;
+  padding:15px;
+  border-radius:12px;
+  background:#0b4da2;
+  color:white;
+  font-size:16px;
+  font-weight:800;
+  cursor:pointer;
+}
+
+.login-btn:disabled{
+  opacity:.6;
+}
+
+.login-error{
+  display:none;
+  margin-top:15px;
+  padding:12px;
+  border-radius:10px;
+  background:#fff0f0;
+  color:#b42318;
+  font-size:14px;
+}
+
+#dashboard{
+  display:none;
+}
+
+.logout{
+  border:0;
+  background:#b42318;
+  color:white;
+  padding:10px 16px;
+  border-radius:10px;
+  font-weight:700;
+  cursor:pointer;
+}
+
+.admin-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  gap:15px;
+  margin-bottom:20px;
+  flex-wrap:wrap;
+}
+</style>
+</head>
+
+<body>
+
+<!-- ================= LOGIN ================= -->
+
+<div id="loginScreen" class="login-screen">
+
+  <div class="login-box">
+
+    <div class="login-logo">
+
+      <img src="logo-dkc-bantul.png" alt="Logo DKC Bantul">
+
+      <h1>DKC BANTUL</h1>
+
+      <p>Panel Pengelola</p>
+
+    </div>
+
+    <label for="username">Username</label>
+
+    <input
+      id="username"
+      type="text"
+      placeholder="Masukkan username"
+      autocomplete="username"
+    >
+
+    <label for="password">Password</label>
+
+    <input
+      id="password"
+      type="password"
+      placeholder="Masukkan password"
+      autocomplete="current-password"
+    >
+
+    <button id="loginBtn" class="login-btn">
+      MASUK
+    </button>
+
+    <div id="loginError" class="login-error"></div>
+
+  </div>
+
+</div>
+
+
+<!-- ================= DASHBOARD ================= -->
+
+<div id="dashboard">
+
+<header class="site-header">
+
+  <div class="container nav">
+
+    <a class="brand" href="index.html">
+
+      <img
+        src="logo-dkc-bantul.png"
+        alt="Logo DKC Bantul"
+      >
+
+      <span>
+        <b>DKC BANTUL</b>
+        <small>Panel Pengelola</small>
+      </span>
+
+    </a>
+
+    <button class="menu">☰</button>
+
+    <nav class="navlinks">
+
+      <a href="index.html">
+        Kembali ke Website
+      </a>
+
+    </nav>
+
+  </div>
+
+</header>
+
+
+<section class="page-hero">
+
+  <div class="container">
+
+    <span
+      class="eyebrow"
+      style="color:#cfe3ff"
+    >
+      PANEL PENGELOLA
+    </span>
+
+    <h1>
+      Dashboard DKC Bantul
+    </h1>
+
+    <p>
+      Selamat datang di panel pengelola website DKC Bantul.
+    </p>
+
+  </div>
+
+</section>
+
+
+<section class="section soft">
+
+  <div class="container">
+
+    <div class="admin-top">
+
+      <div>
+        <span class="pill">
+          ADMIN
+        </span>
+
+        <h2>
+          Pengelolaan Website
+        </h2>
+
+        <p>
+          Anda sudah berhasil masuk sebagai pengelola DKC Bantul.
+        </p>
+
+      </div>
+
+      <button
+        id="logoutBtn"
+        class="logout"
+      >
+        Keluar
+      </button>
+
+    </div>
+
+
+    <div class="grid2">
+
+      <div class="admin-box">
+
+        <span class="pill">
+          MODUL
+        </span>
+
+        <h3>
+          Kelola Konten
+        </h3>
+
+        <p>
+          Struktur organisasi, program kerja,
+          informasi, kegiatan, foto pengurus,
+          dan dokumen website akan dikelola
+          dari panel ini.
+        </p>
+
+        <div class="actions">
+
+          <a
+            class="btn btn-red"
+            href="struktur.html"
+          >
+            Struktur
+          </a>
+
+          <a
+            class="btn"
+            style="background:#edf4ff;color:#0b4da2"
+            href="program.html"
+          >
+            Program Kerja
+          </a>
+
+        </div>
+
+      </div>
+
+
+      <div class="admin-box">
+
+        <span class="pill">
+          SUPABASE
+        </span>
+
+        <h3>
+          Database Terhubung
+        </h3>
+
+        <p>
+          Panel ini sudah menggunakan
+          Supabase Authentication sebagai
+          sistem login administrator.
+        </p>
+
+        <a
+          class="btn btn-red"
+          href="saran.html"
+        >
+          Lihat Usul & Saran
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</section>
+
+
+<footer class="footer">
+
+  <div class="container footer-grid">
+
+    <div>
+
+      <b>DKC BANTUL</b>
+
+      <small>
+        Gerakan Pramuka • Masa Bakti 2026–2031
+      </small>
+
+    </div>
+
+    <div class="footer-motto">
+
+      Teguh Hati • Bakti Diri • Ikhlas Mengabdi Ibu Pertiwi
+
+    </div>
+
+    <div class="footer-copy">
+
+      © 2026 DKC Bantul
+
+    </div>
+
+  </div>
+
+</footer>
+
+</div>
+
+
+<!-- ================= SUPABASE ================= -->
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+
+const SUPABASE_URL =
+"https://kpvhecscwqtslqfpsyvd.supabase.co";
+
+const SUPABASE_KEY =
+"sb_publishable_mp-zxmwTcdUhiy1O8188CQ_tSy8vZoS";
+
+const supabaseClient =
+window.supabase.createClient(
+  SUPABASE_URL,
+  SUPABASE_KEY
+);
+
+
+/*
+  Username yang ditampilkan kepada admin.
+  Supabase tetap menggunakan email untuk proses login.
+*/
+
+const ADMIN_USERNAME = "DKC 1202";
+
+const ADMIN_EMAIL = "aziztaufiq520@gmail.com";
+
+
+const loginScreen =
+document.getElementById("loginScreen");
+
+const dashboard =
+document.getElementById("dashboard");
+
+const loginBtn =
+document.getElementById("loginBtn");
+
+const logoutBtn =
+document.getElementById("logoutBtn");
+
+const loginError =
+document.getElementById("loginError");
+
+
+function showDashboard(){
+
+  loginScreen.style.display = "none";
+
+  dashboard.style.display = "block";
+
+}
+
+
+function showLogin(){
+
+  loginScreen.style.display = "flex";
+
+  dashboard.style.display = "none";
+
+}
+
+
+async function checkSession(){
+
+  const {
+    data
+  } = await supabaseClient.auth.getSession();
+
+  if(data.session){
+
+    showDashboard();
+
+  }else{
+
+    showLogin();
+
+  }
+
+}
+
+
+loginBtn.addEventListener(
+  "click",
+  async function(){
+
+    loginError.style.display = "none";
+
+    const username =
+      document
+      .getElementById("username")
+      .value
+      .trim();
+
+    const password =
+      document
+      .getElementById("password")
+      .value;
+
+
+    if(username !== ADMIN_USERNAME){
+
+      loginError.textContent =
+        "Username salah.";
+
+      loginError.style.display =
+        "block";
+
+      return;
+
+    }
+
+
+    if(!password){
+
+      loginError.textContent =
+        "Password belum diisi.";
+
+      loginError.style.display =
+        "block";
+
+      return;
+
+    }
+
+
+    loginBtn.disabled = true;
+
+    loginBtn.textContent =
+      "MEMERIKSA...";
+
+
+    const {
+      error
+    } =
+      await supabaseClient.auth.signInWithPassword({
+
+        email: ADMIN_EMAIL,
+
+        password: password
+
+      });
+
+
+    if(error){
+
+      loginError.textContent =
+        "Login gagal. Periksa username dan password.";
+
+      loginError.style.display =
+        "block";
+
+      loginBtn.disabled = false;
+
+      loginBtn.textContent =
+        "MASUK";
+
+      return;
+
+    }
+
+
+    showDashboard();
+
+    loginBtn.disabled = false;
+
+    loginBtn.textContent =
+      "MASUK";
+
+  }
+);
+
+
+logoutBtn.addEventListener(
+  "click",
+  async function(){
+
+    await supabaseClient.auth.signOut();
+
+    showLogin();
+
+  }
+);
+
+
+supabaseClient.auth.onAuthStateChange(
+  function(event, session){
+
+    if(session){
+
+      showDashboard();
+
+    }else{
+
+      showLogin();
+
+    }
+
+  }
+);
+
+
+checkSession();
+
+</script>
+
+<script src="app.js"></script>
+
+</body>
+</html>
